@@ -1,0 +1,55 @@
+
+CAT_COLUMNS_BINARY = [
+    'GENDER',
+    'EMPLOYED',
+    'RETIRED',
+    'FLAT_OWNER',
+]
+LABELS_FOR_CAT_COLUMNS_BINARY = [
+    ['женщина', 'мужчина'],
+    ['безработный', 'работает'],
+    ['не на пенсии', 'на пенсии'],
+    ["не владеет квартирой", "владеет квартирой"]
+]
+CAT_COLUMNS_ADDRESS = [
+    'REG_ADDRESS_PROVINCE',
+    'FACT_ADDRESS_PROVINCE',
+    'POSTAL_ADDRESS_PROVINCE',
+]
+CAT_COLUMNS_OTHER = [
+    'MARITAL_STATUS',
+    'EDUCATION',
+    'EMPLOYMENT_INDUSTRY',
+    'EMPLOYMENT_POSITION',
+    'EMPLOYMENT_ROLE',
+    'FAMILY_INCOME'
+]
+
+NUM_COLUMNS = [
+    'AGE',
+    'CHILD_TOTAL',
+    'DEPENDANT_TOTAL',
+    'AUTO_TOTAL',
+    'EMPLOYMENT_DURATION',
+    'PERSONAL_INCOME',
+    'RECENT_LOAN_AMOUNT',
+    'RECENT_LOAN_LENGTH',
+    'RECENT_LOAN_FIRST_PAYMENT',
+    'LOAN_COUNT',
+    'CLOSED_LOAN_COUNT'
+]
+NUM_COLUMNS_CONTINUOUS = [
+    'AGE',
+    'EMPLOYMENT_DURATION',
+    'PERSONAL_INCOME',
+    'RECENT_LOAN_AMOUNT',
+    'RECENT_LOAN_FIRST_PAYMENT',
+]
+NUM_COLUMNS_DISCRETE = [
+    'CHILD_TOTAL',
+    'DEPENDANT_TOTAL',
+    'AUTO_TOTAL',
+    'LOAN_COUNT',
+    'CLOSED_LOAN_COUNT',
+    'RECENT_LOAN_LENGTH'
+]
