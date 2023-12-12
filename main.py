@@ -8,32 +8,53 @@ from streamlit.delta_generator import DeltaGenerator
 from dataset_metadata import CAT_COLUMNS_OTHER, CAT_COLUMNS_ADDRESS, LABELS_FOR_CAT_COLUMNS_BINARY, CAT_COLUMNS_BINARY, \
     NUM_COLUMNS_DISCRETE, NUM_COLUMNS_CONTINUOUS, NUM_COLUMNS, NUM_COLUMNS_CONTINUOUS_BIN_COUNT
 
-st.set_page_config(
-    layout='wide',
-    page_title="Анализ данных об откликах клиентов банка на предложения об услугах"
-)
-
-st.title('Клиенты банка и их отклики на предложения об услугах ')
-st.subheader('Разведочный анализ данных')
-
-bank_image = Image.open('bank_logo.jpg')
-st.image(
-    bank_image,
-    width=400
-)
-st.markdown("""
-    В приложении вы найдете результаты разведочного анализа данных о клиентах банка и их откликах на предложения 
-    банка о новых услугах. 
-    Информация размещена на нескольких вкладках.
-    - __Набор данных__  - содержит данные в табличном виде и описание столбцов.
-    - __Числовые признаки__ - включает описание и анализ числовых признаков.
-    - __Категориальные признаки__ - посвящена описанию и анализ категориальных признаков.
-    - __Целевая переменная__ - представляет результаты анализа влияния различных признаков на целевую переменную.   
-    - __Основные выводы__ - подводит итоги анализа и содержит основные выводы. 
-    """)
-
 clients = pd.read_csv('clients.csv')
-delayed_render = []
+delayed_render = []  # список функций по отложенной отрисовке графиков, которую нужно выполнить после загрузки страницы
+
+
+def render_page():
+    st.set_page_config(
+        layout='wide',
+        page_title="Анализ данных об откликах клиентов банка на предложения об услугах"
+    )
+
+    st.header('Клиенты банка и их отклики на предложения об услугах ')
+    st.subheader('Разведочный анализ данных')
+
+    bank_image = Image.open('bank_logo.jpg')
+    st.image(
+        bank_image,
+        width=400
+    )
+    st.markdown("""
+        В приложении вы найдете результаты разведочного анализа данных о клиентах банка и их откликах на предложения 
+        банка о новых услугах. 
+        Информация размещена на нескольких вкладках.
+        - __Набор данных__  - содержит данные в табличном виде и описание столбцов.
+        - __Числовые признаки__ - включает описание и анализ числовых признаков.
+        - __Категориальные признаки__ - посвящена описанию и анализ категориальных признаков.
+        - __Целевая переменная__ - представляет результаты анализа влияния различных признаков на целевую переменную.   
+        - __Основные выводы__ - подводит итоги анализа и содержит основные выводы. 
+        """)
+
+    tab1, tab2, tab3, tab4, tab5 = st.tabs(
+        ["НАБОР ДАННЫХ",
+         "ЧИСЛОВЫЕ ПРИЗНАКИ",
+         "КАТЕГОРИАЛЬНЫЕ ПРИЗНАКИ",
+         "ЦЕЛЕВАЯ ПЕРЕМЕННАЯ",
+         "ОСНОВНЫЕ ВЫВОДЫ"
+         ])
+
+    with tab1:
+        render_tab1()
+    with tab2:
+        render_tab2()
+    with tab3:
+        render_tab3()
+    with tab4:
+        render_tab4()
+    with tab5:
+        render_tab5()
 
 
 def render_tab1():
@@ -159,7 +180,6 @@ def render_tab2():
     et3.info("Пожалуйста, подождите немного... Формирование графиков почти завершено ... ")
 
     def draw_continuous_num_columns_distribution(container: DeltaGenerator):
-
 
         f = plt.figure(figsize=(20, 8))
         ax = f.subplots(2, 3)
@@ -520,24 +540,6 @@ def render_tab5():
         """)
 
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs(
-    ["НАБОР ДАННЫХ",
-     "ЧИСЛОВЫЕ ПРИЗНАКИ",
-     "КАТЕГОРИАЛЬНЫЕ ПРИЗНАКИ",
-     "ЦЕЛЕВАЯ ПЕРЕМЕННАЯ",
-     "ОСНОВНЫЕ ВЫВОДЫ"
-     ])
-
-with tab1:
-    render_tab1()
-with tab2:
-    render_tab2()
-with tab3:
-    render_tab3()
-with tab4:
-    render_tab4()
-with tab5:
-    render_tab5()
-
+render_page()
 for render_function in delayed_render:
     render_function()
