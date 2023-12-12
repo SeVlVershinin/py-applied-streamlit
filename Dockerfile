@@ -8,7 +8,7 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 
 COPY ./bank_logo.jpg /code/bank_logo.jpg
-COPY ./client_full_data.csv /code/client_full_data.csv
+COPY clients.csv /code/client_full_data.csv
 COPY ./*.py /code/
 
 CMD ["streamlit", "run", "main.py"]

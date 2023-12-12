@@ -32,7 +32,7 @@ st.markdown("""
     - __Основные выводы__ - подводит итоги анализа и содержит основные выводы. 
     """)
 
-clients = pd.read_csv('client_full_data.csv')
+clients = pd.read_csv('clients.csv')
 delayed_render = []
 
 
